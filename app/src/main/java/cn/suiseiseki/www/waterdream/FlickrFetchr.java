@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class FlickrFetchr {
     public static final String TAG = "FlickrFetcher";
-    private static final String ENDPOINT = "http://api.flickr.com/services/rest/",API_KEY = "4f721bgafa75bf6d2cb9af54f937bb70",METHOD_GET_RECENT = "flickr.photos.getRecent",PARAM_EXTRAS="extras",EXTRA_SMALL_URL = "url_s";
+    private static final String ENDPOINT = "http://api.flickr.com/service/rest/",API_KEY = "4f721bgafa75bf6d2cb9af54f937bb70",METHOD_GET_RECENT = "flickr.photos.getRecent",PARAM_EXTRAS="extras",EXTRA_SMALL_URL = "url_s";
     private static final String XML_PHOTO = "photo";
 
     byte[] getUrlBytes(String urlSpec) throws IOException
@@ -55,6 +55,7 @@ public class FlickrFetchr {
         ArrayList<GalleryItem> items = new ArrayList<>();
         try{
             String url = Uri.parse(ENDPOINT).buildUpon().appendQueryParameter("method",METHOD_GET_RECENT).appendQueryParameter("api_key",API_KEY).appendQueryParameter(PARAM_EXTRAS,EXTRA_SMALL_URL).build().toString();
+//            String url = Uri.parse(ENDPOINT).buildUpon().build().toString();
             String xmlString = getUrl(url);
             Log.i(TAG, "Received xml:"+xmlString);
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -90,8 +91,8 @@ public class FlickrFetchr {
         {
             if(eventType == XmlPullParser.START_TAG && XML_PHOTO.equals(parser.getName()))
             {
-                String id = parser.getAttributeValue(null,"id");
-                String Caption = parser.getAttributeValue(null,"title");
+                String id = parser.getAttributeValue(null,"quName");
+                String Caption = parser.getAttributeValue(null,"pyName");
                 String smallUrl = parser.getAttributeValue(null,EXTRA_SMALL_URL);
                 GalleryItem item = new GalleryItem();
                 item.setmId(id);item.setmCaption(Caption);item.setmUrl(smallUrl);

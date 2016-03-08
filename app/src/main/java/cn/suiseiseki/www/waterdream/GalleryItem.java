@@ -5,6 +5,12 @@ package cn.suiseiseki.www.waterdream;
  */
 public class GalleryItem {
     private String mCaption;
+    private String mId;
+    private String mUrl;
+    public String toString()
+    {
+        return mCaption;
+    }
 
     public String getmCaption() {
         return mCaption;
@@ -30,10 +36,6 @@ public class GalleryItem {
         this.mUrl = mUrl;
     }
 
-    private String mId;
-    private String mUrl;
-    public String toString()
-    {
-        return mCaption;
-    }
+
+
 }

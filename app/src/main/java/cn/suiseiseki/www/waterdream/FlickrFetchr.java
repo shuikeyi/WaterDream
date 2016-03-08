@@ -97,6 +97,7 @@ public class FlickrFetchr {
                 item.setmId(id);item.setmCaption(Caption);item.setmUrl(smallUrl);
                 items.add(item);
             }
+            eventType = parser.next();
         }
     }
 }

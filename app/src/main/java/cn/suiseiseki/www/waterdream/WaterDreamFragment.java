@@ -31,7 +31,6 @@ public class WaterDreamFragment extends Fragment {
             mItems = items;
             setupAdapter();
         }
-
     }
     GridView mgridView;
     ArrayList<GalleryItem> mItems;
